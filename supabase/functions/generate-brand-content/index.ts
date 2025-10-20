@@ -79,7 +79,10 @@ Return ONLY a valid JSON object with this exact structure:
     }
 
     const data = await response.json();
-    const content = data.choices[0].message.content;
+    let content = data.choices[0].message.content;
+    
+    // Remove markdown code blocks if present
+    content = content.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     
     // Parse the JSON response from the AI
     const parsedContent = JSON.parse(content);

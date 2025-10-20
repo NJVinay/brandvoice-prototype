@@ -9,8 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-// import { useContentGenerator } from "@/hooks/useContentGenerator.js";
-import { useContentGeneratorSupabase as useContentGenerator } from "@/hooks/useContentGeneratorSupabase.js";
+import { useContentGeneratorSimple as useContentGenerator } from "@/hooks/useContentGeneratorSimple.js";
 import { Loader2, Copy, RefreshCw, Linkedin, Twitter, Instagram, History, BarChart3, Download, RotateCcw, TrendingUp, Target, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -212,93 +211,126 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            BrandVoice - AI Content with Brand Consistency
-          </h1>
-          <div className="flex gap-2">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      {/* Animated background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="relative container mx-auto px-4 py-8">
+        {/* Modern Header */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 space-y-4 lg:space-y-0">
+          <div className="space-y-2">
+            <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
+              BrandVoice
+            </h1>
+            <p className="text-xl text-slate-600 dark:text-slate-300 font-medium">
+              AI-Powered Brand Content Generator
+            </p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md">
+              Create consistent, engaging social media content that perfectly matches your brand voice across all platforms.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"
               size="sm"
               onClick={() => setShowHistory(!showHistory)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-lg transition-all duration-200"
             >
               <History className="h-4 w-4" />
-              History ({generationHistory.length})
+              <span className="hidden sm:inline">History</span>
+              <Badge variant="secondary" className="ml-1 text-xs">
+                {generationHistory.length}
+              </Badge>
             </Button>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setShowAnalytics(!showAnalytics)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-lg transition-all duration-200"
             >
               <BarChart3 className="h-4 w-4" />
-              Analytics
+              <span className="hidden sm:inline">Analytics</span>
             </Button>
             {hasResults && (
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleExport}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-lg transition-all duration-200"
               >
                 <Download className="h-4 w-4" />
-                Export
+                <span className="hidden sm:inline">Export</span>
               </Button>
             )}
           </div>
         </div>
 
-        {/* Progress Bar */}
+        {/* Modern Progress Bar */}
         {isGenerating && (
-          <Card className="mb-6 backdrop-blur-sm bg-card/80">
-            <CardContent className="pt-6">
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span>Generating content...</span>
-                  <span>{Math.round(progress)}%</span>
+          <Card className="mb-8 backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                      <Loader2 className="h-4 w-4 text-white animate-spin" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-slate-700">Generating content...</p>
+                      <p className="text-sm text-slate-500">
+                        {currentPlatform ? `Processing ${currentPlatform}...` : 'Preparing your content'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-slate-700">{Math.round(progress)}%</div>
+                    <div className="text-xs text-slate-500">Complete</div>
+                  </div>
                 </div>
-                <Progress value={progress} className="w-full" />
-                {currentPlatform && (
-                  <p className="text-sm text-muted-foreground">
-                    Currently processing: <span className="font-medium capitalize">{currentPlatform}</span>
-                  </p>
-                )}
+                <Progress value={progress} className="w-full h-3 bg-slate-100" />
               </div>
             </CardContent>
           </Card>
         )}
 
-        {/* Analytics Dashboard */}
+        {/* Modern Analytics Dashboard */}
         {showAnalytics && hasResults && (
-          <Card className="mb-6 backdrop-blur-sm bg-card/80">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5" />
-                Analytics Dashboard
+          <Card className="mb-8 backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                  <BarChart3 className="h-4 w-4 text-white" />
+                </div>
+                Performance Analytics
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center p-4 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">
                     {getAverageScore() || 0}
                   </div>
-                  <div className="text-sm text-muted-foreground">Average Score</div>
+                  <div className="text-sm font-medium text-blue-700 dark:text-blue-300">Average Score</div>
+                  <div className="text-xs text-blue-600 dark:text-blue-400 mt-1">Brand Voice Quality</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">
+                <div className="text-center p-4 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
+                  <div className="text-3xl font-bold text-green-600 mb-1 capitalize">
                     {getBestPlatform() || 'N/A'}
                   </div>
-                  <div className="text-sm text-muted-foreground">Best Platform</div>
+                  <div className="text-sm font-medium text-green-700 dark:text-green-300">Best Platform</div>
+                  <div className="text-xs text-green-600 dark:text-green-400 mt-1">Top Performer</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">
+                <div className="text-center p-4 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+                  <div className="text-3xl font-bold text-purple-600 mb-1">
                     {generationHistory.length}
                   </div>
-                  <div className="text-sm text-muted-foreground">Total Generations</div>
+                  <div className="text-sm font-medium text-purple-700 dark:text-purple-300">Total Generations</div>
+                  <div className="text-xs text-purple-600 dark:text-purple-400 mt-1">Content Created</div>
                 </div>
               </div>
             </CardContent>
@@ -308,9 +340,15 @@ const Index = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* LEFT COLUMN - Input Section */}
           <div className="space-y-6">
-            <Card className="backdrop-blur-sm bg-card/80">
-              <CardHeader>
-                <CardTitle>Brand Profile</CardTitle>
+            <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-3 text-xl">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                    <Target className="h-4 w-4 text-white" />
+                  </div>
+                  Brand Profile
+                </CardTitle>
+                <p className="text-sm text-slate-500">Tell us about your brand's personality and voice</p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -390,9 +428,15 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="backdrop-blur-sm bg-card/80">
-              <CardHeader>
-                <CardTitle>Content Brief</CardTitle>
+            <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-3 text-xl">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center">
+                    <TrendingUp className="h-4 w-4 text-white" />
+                  </div>
+                  Content Brief
+                </CardTitle>
+                <p className="text-sm text-slate-500">Describe what you want to communicate</p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -428,20 +472,23 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={handleGenerate} 
                 disabled={isGenerating}
-                className="flex-1"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-200 h-12 text-base font-semibold"
                 size="lg"
               >
                 {isGenerating ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating...
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Generating Content...
                   </>
                 ) : (
-                  "Generate Content"
+                  <>
+                    <Target className="mr-2 h-5 w-5" />
+                    Generate Content
+                  </>
                 )}
               </Button>
               {canCancel && (
@@ -449,6 +496,7 @@ const Index = () => {
                   onClick={() => {/* Add cancel functionality */}} 
                   variant="destructive"
                   size="lg"
+                  className="h-12 px-6"
                 >
                   Cancel
                 </Button>
@@ -457,6 +505,7 @@ const Index = () => {
                 onClick={handleReset} 
                 variant="outline"
                 size="lg"
+                className="h-12 px-6 bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-lg transition-all duration-200"
               >
                 <RefreshCw className="mr-2 h-4 w-4" />
                 Reset
@@ -467,26 +516,36 @@ const Index = () => {
           {/* RIGHT COLUMN - Output Section */}
           <div className="space-y-6">
             {!generatedContent ? (
-              <Card className="backdrop-blur-sm bg-card/80 border-dashed h-full flex items-center justify-center">
-                <CardContent className="text-center text-muted-foreground py-20">
-                  <p className="text-lg">Generated content will appear here</p>
-                  <p className="text-sm mt-2">Fill in the form and click "Generate Content" to get started</p>
+              <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl border-dashed h-full flex items-center justify-center">
+                <CardContent className="text-center py-20">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center">
+                    <Target className="h-10 w-10 text-blue-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-700 mb-2">Ready to Generate Content</h3>
+                  <p className="text-slate-500 mb-4">Fill in your brand profile and content brief, then click "Generate Content" to create AI-powered social media posts that match your brand voice.</p>
+                  <div className="flex justify-center gap-2 text-xs text-slate-400">
+                    <span className="px-2 py-1 bg-slate-100 rounded-full">LinkedIn</span>
+                    <span className="px-2 py-1 bg-slate-100 rounded-full">Twitter</span>
+                    <span className="px-2 py-1 bg-slate-100 rounded-full">Instagram</span>
+                  </div>
                 </CardContent>
               </Card>
             ) : (
               <>
                 {/* LinkedIn Card */}
-                <Card className="backdrop-blur-sm bg-card/80 border-blue-500/20">
-                  <CardHeader className="bg-gradient-to-r from-blue-500/10 to-transparent">
+                <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl border-l-4 border-l-blue-500">
+                  <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/10">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="flex items-center gap-2">
-                        <Linkedin className="h-5 w-5 text-blue-500" />
+                      <CardTitle className="flex items-center gap-3 text-lg">
+                        <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center">
+                          <Linkedin className="h-4 w-4 text-white" />
+                        </div>
                         LinkedIn
                       </CardTitle>
                       <div className="flex items-center gap-2">
                         {generatedContent.linkedin.brandVoiceScore && (
-                          <Badge className={getScoreColor(generatedContent.linkedin.brandVoiceScore)}>
-                            {generatedContent.linkedin.brandVoiceScore}/100 - {getScoreLabel(generatedContent.linkedin.brandVoiceScore)}
+                          <Badge className={`${getScoreColor(generatedContent.linkedin.brandVoiceScore)} font-semibold px-3 py-1`}>
+                            {generatedContent.linkedin.brandVoiceScore}/100
                           </Badge>
                         )}
                         <Button
@@ -494,6 +553,7 @@ const Index = () => {
                           variant="ghost"
                           onClick={() => handleRegeneratePlatform('linkedin')}
                           disabled={isGenerating}
+                          className="hover:bg-blue-100 dark:hover:bg-blue-900/20"
                         >
                           <RotateCcw className="h-4 w-4" />
                         </Button>

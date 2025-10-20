@@ -8,7 +8,20 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:coverage": "playwright test --reporter=html",
+    "test:ci": "playwright test --reporter=github",
+    "test:manual": "echo 'Open http://localhost:8080 and follow TESTING.md checklist'",
+    "test:all": "npm run lint && npm run test && npm run test:report",
+    "test:jest": "jest",
+    "test:jest:watch": "jest --watch",
+    "test:jest:coverage": "jest --coverage",
+    "test:data": "node test-runner.js --data"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -66,6 +79,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.16.5",
     "@types/react": "^18.3.23",

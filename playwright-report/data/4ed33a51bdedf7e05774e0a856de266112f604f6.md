@@ -1,0 +1,91 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - heading "BrandVoice" [level=1] [ref=e11]
+        - paragraph [ref=e12]: AI-Powered Brand Content Generator
+        - paragraph [ref=e13]: Create consistent, engaging social media content that perfectly matches your brand voice across all platforms.
+      - generic [ref=e14]:
+        - button "History 0" [ref=e15] [cursor=pointer]:
+          - img
+          - generic [ref=e16]: History
+          - generic [ref=e17]: "0"
+        - button "Analytics" [ref=e18] [cursor=pointer]:
+          - img
+          - generic [ref=e19]: Analytics
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - heading "Brand Profile" [level=3] [ref=e24]:
+              - img [ref=e26]
+              - text: Brand Profile
+            - paragraph [ref=e30]: Tell us about your brand's personality and voice
+          - generic [ref=e31]:
+            - generic [ref=e32]:
+              - text: Company Name *
+              - textbox "Company Name *" [ref=e33]:
+                - /placeholder: Your Company Name
+            - generic [ref=e34]:
+              - text: Industry
+              - combobox "Industry" [ref=e35] [cursor=pointer]:
+                - generic: Select industry
+                - img [ref=e36]
+            - generic [ref=e38]:
+              - text: Brand Tone *
+              - combobox "Brand Tone *" [ref=e39] [cursor=pointer]:
+                - generic: Select tone
+                - img [ref=e40]
+            - generic [ref=e42]:
+              - text: Target Audience
+              - textbox "Target Audience" [ref=e43]:
+                - /placeholder: e.g., Marketing professionals, Gen Z consumers
+            - generic [ref=e44]:
+              - text: Example Post 1
+              - textbox "Example Post 1" [ref=e45]:
+                - /placeholder: Share an example of your brand's social media content...
+            - generic [ref=e46]:
+              - text: Example Post 2
+              - textbox "Example Post 2" [ref=e47]:
+                - /placeholder: Share another example...
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - heading "Content Brief" [level=3] [ref=e50]:
+              - img [ref=e52]
+              - text: Content Brief
+            - paragraph [ref=e55]: Describe what you want to communicate
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - text: Topic/Message *
+              - textbox "Topic/Message *" [ref=e58]:
+                - /placeholder: What do you want to communicate?
+            - generic [ref=e59]:
+              - text: Call-to-Action
+              - textbox "Call-to-Action" [ref=e60]:
+                - /placeholder: e.g., Visit our website, Sign up now
+            - generic [ref=e61]:
+              - text: Keywords (comma separated)
+              - textbox "Keywords (comma separated)" [ref=e62]:
+                - /placeholder: innovation, technology, growth
+        - generic [ref=e63]:
+          - button "Generate Content" [active] [ref=e64] [cursor=pointer]:
+            - img
+            - text: Generate Content
+          - button "Reset" [ref=e65] [cursor=pointer]:
+            - img
+            - text: Reset
+      - generic [ref=e68]:
+        - img [ref=e70]
+        - heading "Ready to Generate Content" [level=3] [ref=e74]
+        - paragraph [ref=e75]: Fill in your brand profile and content brief, then click "Generate Content" to create AI-powered social media posts that match your brand voice.
+        - generic [ref=e76]:
+          - generic [ref=e77]: LinkedIn
+          - generic [ref=e78]: Twitter
+          - generic [ref=e79]: Instagram
+```

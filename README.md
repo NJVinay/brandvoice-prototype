@@ -17,7 +17,7 @@ BrandVoice demonstrates how AI can generate platform-optimized content (LinkedIn
 
 ## 🚀 Live Demo
 
-**[View Live Demo]((https://brandvoice-prototype.netlify.app))**
+**[View Live Demo](https://brandvoice-prototype.netlify.app)**
 
 ## 🛠️ Built With
 

@@ -22,7 +22,7 @@ BrandVoice demonstrates how AI can generate platform-optimized content (LinkedIn
 ## 🛠️ Built With
 
 - **Frontend:** React + Vite + Tailwind CSS
-- **AI:** OpenAI GPT-3.5-turbo
+- **AI:** OpenAI GPT-3.5-turbo (current prototype with Supabase Edge Function integration)
 - **Deployment:** Netlify
 - **Development Time:** ~1 hour (rapid prototyping)
 

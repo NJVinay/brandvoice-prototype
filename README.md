@@ -1,73 +1,65 @@
-# Welcome to your Lovable project
+# BrandVoice
 
-## Project info
+**AI Content Generation with Brand Consistency**
 
-**URL**: https://lovable.dev/projects/edbc09a6-ca16-4d55-866e-ad0c55f3f131
+A proof-of-concept demonstrating brand-consistent, multi-platform social media content generation - built for AilandMedia.
 
-## How can I edit this code?
+## 🎯 The Problem
 
-There are several ways of editing your application.
+Businesses struggle to maintain consistent brand voice when creating content across multiple social media platforms. Generic AI tools produce content that sounds robotic and doesn't reflect brand personality.
 
-**Use Lovable**
+## 💡 The Solution
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/edbc09a6-ca16-4d55-866e-ad0c55f3f131) and start prompting.
+BrandVoice demonstrates how AI can generate platform-optimized content (LinkedIn, Twitter/X, Instagram) while maintaining a consistent brand voice based on:
+- Brand profile (tone, industry, target audience)
+- Example posts that define the brand's style
+- Content briefs with specific topics and CTAs
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Live Demo
 
-**Use your preferred IDE**
+**[View Live Demo](https://brandvoice-prototype.netlify.app)**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Built With
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend:** React + Vite + Tailwind CSS
+- **AI:** Gemini 2.5 Flash (current prototype with Supabase Edge Function integration + Lovable AI Gateway which connects to Google Gemini)
+- **Deployment:** Netlify
+- **Development Time:** ~1 hour (rapid prototyping)
 
-Follow these steps:
+## 📸 Features
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- ✅ Brand profile configuration
+- ✅ Multi-platform content generation (LinkedIn, Twitter, Instagram)
+- ✅ Platform-specific optimization (character limits, tone adaptation)
+- ✅ Brand voice consistency scoring
+- ✅ Copy-to-clipboard functionality
+- ✅ Responsive design
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🎓 Key Technical Highlights
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Prompt Engineering:** Platform-specific prompts that maintain brand voice while adapting to platform norms
+- **Few-Shot Learning:** Uses example posts to teach AI the brand's style
+- **Real-time Generation:** Parallel API calls for faster results
+- **Error Handling:** Graceful fallbacks and user feedback
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 🔮 Production Roadmap
 
-**Edit a file directly in GitHub**
+This demo demonstrates core functionality. A production version would include:
+- User authentication and brand profile persistence
+- Content calendar and scheduling
+- Analytics and performance tracking
+- Multi-language support
+- Image generation integration
+- A/B testing capabilities
+- Team collaboration features
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 👨‍💻 About
 
-**Use GitHub Codespaces**
+Built by [Jyotir Vinay](https://jyotirvinay-portfolio.netlify.app/) as a demonstration of brand-consistent AI content generation for AilandMedia.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+**Portfolio:** https://jyotirvinay-portfolio.netlify.app/  
+**GitHub:** https://github.com/NJVinay
 
-## What technologies are used for this project?
+---
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/edbc09a6-ca16-4d55-866e-ad0c55f3f131) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+*Developed in October 2025 | Karlskrona, Sweden*

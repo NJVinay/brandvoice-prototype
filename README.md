@@ -1,5 +1,7 @@
 # BrandVoice
 
+**GitHub Repository**: https://github.com/NJVinay/brandvoice-prototype
+
 **AI Content Generation with Brand Consistency**
 
 A proof-of-concept demonstrating brand-consistent, multi-platform social media content generation - built for AilandMedia.

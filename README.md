@@ -1,7 +1,6 @@
 # BrandVoice
 
 **Live Demo:** https://brandvoice-prototype.netlify.app  
-**GitHub Repository**: https://github.com/NJVinay/brandvoice-prototype
 
 **AI Content Generation with Brand Consistency**
 
